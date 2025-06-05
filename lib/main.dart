@@ -36,85 +36,87 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Encabezado
-            Container(
-              color: const Color(0xFF9ED6EF), // Color azul claro
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'SocialFun',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // TODO: Lógica de cerrar sesión
-                    },
-                    child: const Text(
-                      'Cerrar sesión',
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-
-            const Spacer(),
-
-            // Texto central
-            const Text(
-              'Vaya!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Parece que no tienes ningún niño registrado',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 30),
-
-            // Botón de registro
-            ElevatedButton(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF9ED6EF),
+        elevation: 0,
+        title: const Text(
+          'SocialFun',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0), // <- Padding derecho
+            child: TextButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ChildRegistration(),
-                  ),
-                );
+                // TODO: Lógica de cerrar sesión
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF9ED6EF),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-              ),
               child: const Text(
-                'REGISTRAR NUEVO NIÑO',
+                'Cerrar sesión',
                 style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.black,
+                  color: Colors.red,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
+          ),
+        ],
+        automaticallyImplyLeading:
+            false, // Quita el ícono de back si no lo necesitas
+      ),
+      body: SafeArea(
+        child: SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child: Column(
+            children: [
+              const Spacer(),
+              // Texto central
+              const Text(
+                'Vaya!',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Parece que no tienes ningún niño registrado',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 30),
 
-            const Spacer(), 
-          ],
+              // Botón de registro
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChildRegistration(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF9ED6EF),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                ),
+                child: const Text(
+                  'REGISTRAR NUEVO NIÑO',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+
+              const Spacer(),
+            ],
+          ),
         ),
       ),
     );
