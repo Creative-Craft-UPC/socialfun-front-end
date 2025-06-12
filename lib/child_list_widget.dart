@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:social_fun/child_registration_widget.dart';
 import 'package:social_fun/main_app_bar.dart';
 
 class ChildListScreen extends StatelessWidget {
-  final List<String> childrenNames; // Simulando que tenemos solo nombres por ahora
+  final List<String>
+      childrenNames; // Simulando que tenemos solo nombres por ahora
 
   const ChildListScreen({super.key, required this.childrenNames});
 
@@ -10,88 +12,103 @@ class ChildListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const SocialFunAppBar(
-        title: 'SocialFun',
+      appBar: const SocialFunAppBar(title: 'SocialFun'),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const RegisterChildScreen(),
+            ),
+          );
+        },
+        backgroundColor: Colors.grey,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add, color: Colors.white),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 6),
-
-            const Text(
-              'Lista de niños registrados:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 20),
-
-            // Lista horizontal de niños
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                scrollDirection: Axis.horizontal,
-                itemCount: childrenNames.length,
-                itemBuilder: (context, index) {
-                  return _buildChildCard(childrenNames[index]);
-                },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Lista de niños registrados:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
-            ),
+              const SizedBox(height: 16),
 
-            const SizedBox(height: 20),
-
-            // Botón para añadir niño
-            GestureDetector(
-              onTap: () {
-                // TODO: Navegar a pantalla de registro de nuevo niño
-              },
-              child: const Column(
-                children: [
-                   CircleAvatar(
-                    radius: 24,
-                    backgroundColor: Colors.grey,
-                    child: Icon(Icons.add, color: Colors.white),
-                  ),
-                  SizedBox(height: 6),
-                  Text(
-                    'Añadir niño',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
+              // Lista de niños
+              Expanded(
+                child: ListView.builder(
+                  itemCount: childrenNames.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6.0),
+                      child: _buildChildCard(childrenNames[index], context),
+                    );
+                  },
+                ),
               ),
-            ),
-
-            const SizedBox(height: 40),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildChildCard(String name) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Column(
-        children: [
-          const CircleAvatar(
-            radius: 35,
-            backgroundImage: AssetImage('assets/avatar_placeholder.png'), // Imagen de avatar por defecto
+  Widget _buildChildCard(String name, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // TODO
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        elevation: 3,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            children: [
+              const CircleAvatar(
+                radius: 30,
+                backgroundImage: AssetImage('assets/avatar_placeholder.png'),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    OutlinedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterChildScreen(),
+                          ),
+                        );
+                      },
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(80, 30),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 4),
+                        textStyle: const TextStyle(fontSize: 14),
+                      ),
+                      child: const Text('Editar'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
-          ElevatedButton(
-            onPressed: () {
-              // TODO: Ver detalles del niño o navegar a su perfil
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFC0CAFF),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              elevation: 4,
-            ),
-            child: Text(
-              name,
-              style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

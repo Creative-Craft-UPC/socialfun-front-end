@@ -86,7 +86,7 @@ class _RegisterChildScreenState extends State<RegisterChildScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ChildListScreen(
-                          childrenNames: ('Juan').split(', '),
+                          childrenNames: ('Juan, Romina').split(', '),
                         ),
                       )
                     );
