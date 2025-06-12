@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:social_fun/app_colors.dart';
+import 'package:social_fun/main_app_bar.dart';
 import 'package:social_fun/child_registration_widget.dart';
 
 void main() async {
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'SocialFun',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF9ED6EF)),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -36,36 +38,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF9ED6EF),
-        elevation: 0,
-        title: const Text(
-          'SocialFun',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0), // <- Padding derecho
-            child: TextButton(
-              onPressed: () {
-                // TODO: Lógica de cerrar sesión
-              },
-              child: const Text(
-                'Cerrar sesión',
-                style: TextStyle(
-                  color: Colors.red,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
-        automaticallyImplyLeading:
-            false, // Quita el ícono de back si no lo necesitas
-      ),
+      appBar: const SocialFunAppBar(title: 'SocialFun'),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
@@ -92,7 +65,7 @@ class MyHomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ChildRegistration(),
+                      builder: (context) => const RegisterChildScreen(),
                     ),
                   );
                 },
