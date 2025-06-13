@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:social_fun/child_registration_widget.dart';
-import 'package:social_fun/main_app_bar.dart';
+import 'package:social_fun/home/screens/child_registration_page.dart';
+import 'package:social_fun/shared/widgets/main_app_bar.dart';
 
 class ChildListScreen extends StatelessWidget {
   final List<String>
