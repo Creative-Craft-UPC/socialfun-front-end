@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:social_fun/app_colors.dart';
-import 'package:social_fun/main_app_bar.dart';
-import 'package:social_fun/child_registration_widget.dart';
+import 'package:social_fun/home/screens/child_empty_list_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,11 +10,11 @@ void main() async {
     DeviceOrientation.landscapeLeft, // Normal Portrait
   ]);
 
-  runApp(const MyApp());
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -30,68 +29,15 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: const SocialFunAppBar(title: 'SocialFun'),
-      body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          height: double.infinity,
-          child: Column(
-            children: [
-              const Spacer(),
-              // Texto central
-              const Text(
-                'Vaya!',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'Parece que no tienes ningún niño registrado',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 30),
-
-              // Botón de registro
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RegisterChildScreen(),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF9ED6EF),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                ),
-                child: const Text(
-                  'REGISTRAR NUEVO NIÑO',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-
-              const Spacer(),
-            ],
-          ),
-        ),
-      ),
+    return const MaterialApp(
+      title: 'SocialFun',
+      home: ChildEmptyList(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

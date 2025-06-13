@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:social_fun/app_colors.dart';
-import 'package:social_fun/child_list_widget.dart';
-import 'package:social_fun/return_app_bar.dart';
+import 'package:social_fun/home/screens/child_list_page.dart';
+import 'package:social_fun/shared/widgets/return_app_bar.dart';
 
 class RegisterChildScreen extends StatefulWidget {
   const RegisterChildScreen({super.key});
